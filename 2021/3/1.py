@@ -14,9 +14,8 @@ summed = list(reduce(f, digits))
 gamma = list(map(lambda x: round(x/n), summed))
 epsilon = [int(not x) for x in gamma]
 
-gamma = eval("0x" + "".join([str(x) for x in gamma]))
-epsilon = eval("0x" + "".join([str(x) for x in epsilon]))
-
+gamma = eval("0b" + "".join([str(x) for x in gamma]))
+epsilon = eval("0b" + "".join([str(x) for x in epsilon]))
 
 print(gamma*epsilon)
 
