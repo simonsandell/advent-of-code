@@ -1,20 +1,22 @@
 from copy import deepcopy
 
 digits = []
-with open('input') as f:
+with open("input") as f:
     for l in f.readlines():
         d = [int(x) for x in list(l.strip())]
         digits.append(d)
+
 
 def get_most_common(digs, pos):
     n = len(digs)
     s = 0
     for d in digs:
         s += d[pos]
-    if 2*s >= n:
+    if 2 * s >= n:
         return 1
-    if 2*s < n:
+    if 2 * s < n:
         return 0
+
 
 def filter_digits(digs, pos, val):
     r = []
@@ -22,6 +24,7 @@ def filter_digits(digs, pos, val):
         if d[pos] == val:
             r.append(d)
     return r
+
 
 oxy_digs = deepcopy(digits)
 pos = 0
