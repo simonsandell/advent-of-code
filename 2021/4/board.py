@@ -1,11 +1,13 @@
 from operator import add
+
+
 class Board:
     def __init__(self, board):
         self.board_numbers = board
-        self.marked_squares = [[0,0,0,0,0] for i in range(5)]
+        self.marked_squares = [[0, 0, 0, 0, 0] for i in range(5)]
 
     def has_won(self):
-        v = [0] * 5 
+        v = [0] * 5
         for i in range(5):
             if sum(self.marked_squares[i]) == 5:
                 return True
@@ -19,6 +21,7 @@ class Board:
             for j in range(5):
                 if self.board_numbers[i][j] == num:
                     self.marked_squares[i][j] = 1
+
     def sum_unmarked(self):
         s = 0
         for i in range(5):

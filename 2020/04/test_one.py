@@ -20,20 +20,17 @@ def test_split():
 
 
 def test_parse():
-    assert (
-        one.parse_passport(
-            """pid:69
+    assert one.parse_passport(
+        """pid:69
 byr:1994 iyr:2014 hgt:172cm hcl:#c0946f eyr:2022"""
-        )
-        == {
-            "pid": "69",
-            "byr": "1994",
-            "iyr": "2014",
-            "hgt": "172cm",
-            "hcl": "#c0946f",
-            "eyr": "2022",
-        }
-    )
+    ) == {
+        "pid": "69",
+        "byr": "1994",
+        "iyr": "2014",
+        "hgt": "172cm",
+        "hcl": "#c0946f",
+        "eyr": "2022",
+    }
 
 
 def test_check():
