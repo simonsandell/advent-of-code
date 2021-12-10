@@ -1,21 +1,22 @@
 #!/usr/bin/env python
+import sys, os, datetime, subprocess
 import requests
-import sys
-import datetime
-import subprocess
 
 rootpath = (
     subprocess.run(["git", "rev-parse", "--show-toplevel"], stdout=subprocess.PIPE)
     .stdout.decode()
     .strip()
 )
-year = datetime.datetime.now().year
+year = sys.argv[1] if len(sys.argv) > 1 else datetime.datetime.now().year
+day = sys.argv[2] if len(sys.argv) > 2 else datetime.datetime.now().day
 
 with open(".secret", "r") as f:
     secret = f.read().strip()
 headers = {"Cookie": secret}
 input = requests.get(
-    f"https://adventofcode.com/{year}/day/{int(sys.argv[1])}/input", headers=headers
+    f"https://adventofcode.com/{year}/day/{day}/input", headers=headers
 ).text
-with open(f"{rootpath}/{year}/{sys.argv[1]}/input", "w") as f:
+path = f"{rootpath}/{year}/{day}/"
+os.makedirs(path, exist_ok=True)
+with open(path + "input", "w") as f:
     f.write(input)
