@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, os, datetime, subprocess
+import sys, os, datetime, subprocess, shutil
 import requests
 
 rootpath = (
@@ -20,3 +20,4 @@ path = f"{rootpath}/{year}/{day}/"
 os.makedirs(path, exist_ok=True)
 with open(path + "input", "w") as f:
     f.write(input)
+shutil.copyfile("template.py", path + "1.py")
