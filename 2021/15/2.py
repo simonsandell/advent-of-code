@@ -78,9 +78,4 @@ while True:
         else:
             if arr[n] + mv < graph[n]:
                 graph[n] = arr[n] + mv
-print(
-    np.transpose(
-        arr[orig_width * 4 : orig_width * 5, orig_height * 4 : orig_height * 5]
-    )
-)
 print(int(graph[(width - 1, height - 1)]))
