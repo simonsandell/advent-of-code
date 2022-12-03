@@ -7,8 +7,8 @@ rootpath = (
     .stdout.decode()
     .strip()
 )
-year = sys.argv[1] if len(sys.argv) > 1 else datetime.datetime.now().year
-day = sys.argv[2] if len(sys.argv) > 2 else datetime.datetime.now().day
+year = int(sys.argv[1]) if len(sys.argv) > 1 else datetime.datetime.now().year
+day = int(sys.argv[2]) if len(sys.argv) > 2 else datetime.datetime.now().day
 
 with open(".secret", "r") as f:
     secret = f.read().strip()
@@ -16,7 +16,7 @@ headers = {"Cookie": secret}
 input = requests.get(
     f"https://adventofcode.com/{year}/day/{day}/input", headers=headers
 ).text
-path = f"{rootpath}/{year}/{day}/"
+path = f"{rootpath}/{year}/{day:02}/"
 os.makedirs(path, exist_ok=True)
 with open(path + "input", "w") as f:
     f.write(input)
