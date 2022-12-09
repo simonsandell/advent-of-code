@@ -14,12 +14,13 @@ visited.add(tuple(start_pos))
 
 
 def print_grid(rope, visited):
-    grid = [["." for _ in range(100)] for _ in range(100)]
-    grid[50][50] = "s"
+    max_n = 20 + int(1.5 * max(map(lambda x: abs(x[0]) + abs(x[1]), visited)))
+    grid = [["." for _ in range(max_n)] for _ in range(max_n)]
+    grid[max_n // 2][max_n // 2] = "s"
     for v in visited:
-        grid[50 + v[0]][50 + v[1]] = "#"
+        grid[max_n // 2 + v[0]][max_n // 2 + v[1]] = "#"
     for i, r in enumerate(rope):
-        grid[50 + r[0]][50 + r[1]] = str(i)
+        grid[max_n // 2 + r[0]][max_n // 2 + r[1]] = str(i)
     for l in grid:
         print("".join(l))
 
@@ -60,8 +61,6 @@ def adjust_rope(rope):
 
 for l in lines:
     to, dist = l.split(" ")
-    print(to, dist)
-    print_grid(rope, visited)
     if to == "L":
         for i in range(int(dist)):
             rope[0][0] -= 1
@@ -82,6 +81,8 @@ for l in lines:
             rope[0][1] += 1
             adjust_rope(rope)
             visited.add(tuple(rope[-1]))
+    print_grid(rope, visited)
+    print(to, dist)
     input()
 
 print(len(visited))
